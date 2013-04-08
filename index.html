@@ -10,10 +10,13 @@
 <html>
 <head>
     <meta id="viewport_meta" name="viewport" content="" />
-    <script type="text/javascript">
-        var viewport_meta = document.getElementById('viewport_meta');
-        var w = (screen.orientation.indexOf("portrait") == 0)?screen.availWidth:screen.availHeight;
-        viewport_meta.setAttribute('content','width='+w+', user-scalable=no');
+    <script>
+    var deviceWidth = screen.width;
+    var layoutViewportWidth = document.documentElement.clientWidth;
+    var scale = layoutViewportWidth / deviceWidth;
+    var content = 'width=' + deviceWidth + ', initial-scale=' + scale +
+                  ', maximum-scale=' + scale + ', minimum-scale=' + scale;
+    document.querySelector('[name=viewport]').setAttribute('content', content);
     </script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Ten Frame</title>
@@ -39,11 +42,11 @@
            <div id="help_contents" class="contents">
 Have fun while learning counting and math in these three mini-games!<br>
 <ul><li>
-PIRATES GAME: Save the stranded pirates in Pirate Rescue! 
+PIRATES GAME: Save the stranded pirates in Pirate Rescue!
 Count enough pirates for each rescue ship until they’re all saved!
 </li>
 <li>
-ROCKETS LAUNCH: Help the rockets take off for the stars in Rocket Ship! 
+ROCKETS LAUNCH: Help the rockets take off for the stars in Rocket Ship!
 Add and subtract fuel cells until the rockets are all fueled up and ready to go!
 </li>
 <li>
