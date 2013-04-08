@@ -18,25 +18,30 @@ String.prototype.startsWith = function (str) {
 function TenFrame() {
     "use strict";
 
-    var piratesGame, rocketsGame, bowlingGame,
-        menushown = false, restart, close;
+    var piratesGame, rocketsGame, bowlingGame, activeGame;
+
+    var menu = $("#game_menu");
 
     function closeMenu() {
-        $("#game_menu").removeClass("slide");
-        $("#game_menu_border").css("pointer-events", "none");
-        setTimeout(function () {menushown = false;}, 0);
+        menu.removeClass("slide");
+        menu.off("click").one("click", openMenu);
     }
 
     function openMenu() {
-        $("#game_menu").addClass("slide");
-        $("#game_menu_border").css("pointer-events", "auto");
-        setTimeout(function () {menushown = true;}, 0);
+        menu.addClass("slide");
+        menu.off("click").one("click", closeMenu);
+    }
+
+    function startGame(game) {
+        activeGame = game;
+        activeGame.start();
+        $("#game_menu_border").show();
     }
 
     /* need to set isrotated so we can swap x/y axis for touch events */
     function resize()
     {
-        if($(window).width() > $(window).height())
+        if ($(window).width() > $(window).height())
             isrotated = false;
         else
             isrotated = true;
@@ -87,51 +92,42 @@ function TenFrame() {
 
         piratesGame = new Pirates();
         $("#home_pirates").click(function() {
-            piratesGame.start();
-            restart = piratesGame.start;
-            close = piratesGame.close;
-            $("#game_menu_border").show();
+            startGame(piratesGame);
         });
 
         rocketsGame = new Rockets();
         $("#home_rockets").click(function() {
-            rocketsGame.start();
-            restart = rocketsGame.start;
-            close = rocketsGame.close;
-            $("#game_menu_border").show();
+            startGame(rocketsGame);
         });
 
         bowlingGame = new Bowling();
         $("#home_bowling").click(function() {
-            bowlingGame.start();
-            restart = bowlingGame.start;
-            close = bowlingGame.close;
-            $("#game_menu_border").show();
+            startGame(bowlingGame);
         });
 
-        $("#game_menu").click(function(){
-            if(menushown)
-            {
+        $("#game_menu_new").click(function(e){
+            e.stopPropagation();
+
+            closeMenu();
+
+            startGame(activeGame);
+        });
+
+        $("#game_menu_home").click(function(e){
+            e.stopPropagation();
+
+            activeGame.close();
+            activeGame = null;
+
+            setTimeout(function () {
                 closeMenu();
-            }
+                $("#game_menu_border").hide();
+                $("#home_page").show();
+            }, 0);
         });
 
-        $("#game_menu_tab").click(function(){
-            if(!menushown)
-            {
-                openMenu();
-            }
-        });
-
-        $("#game_menu_new").click(function(){
-            closeMenu();
-            restart();
-        });
-
-        $("#game_menu_home").click(function(){
-            closeMenu();
-            close();
-        });
+        // set the initial event handler for the menu
+        closeMenu();
 
         $(window).bind('resize', resize);
         resize();

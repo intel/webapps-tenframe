@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -64,16 +64,14 @@ function Bowling() {
         reset();
         $("#bowling_page").hide();
         $("#bowling_win_page").hide();
-        $("#game_menu_border").hide();
-        $("#home_page").show();
     }
     this.close = close;
 
     /* called to stop any delayed events and return the app to starting position */
     function reset() {
         $("#bowling_win_page").hide();
-        if(timerroll)
-            clearTimeout(Pirates.timerstart);
+        if (timerroll)
+            clearTimeout(timerroll);
         frameReset();
         rollReset();
         var val = 1;

@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -35,8 +35,6 @@ function Rockets() {
         reset();
         $("#rockets_page").hide();
         $("#rockets_win_page").hide();
-        $("#game_menu_border").hide();
-        $("#home_page").show();
     }
     this.close = close;
 
