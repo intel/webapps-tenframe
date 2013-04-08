@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <!--
  * Copyright (c) 2012, Intel Corporation.
  *
@@ -9,7 +9,8 @@
 -->
 <html>
 <head>
-    <meta id="viewport_meta" name="viewport" content="" />
+    <meta name="viewport">
+    <meta charset="utf-8">
     <script>
     var deviceWidth = screen.width;
     var layoutViewportWidth = document.documentElement.clientWidth;
@@ -18,8 +19,6 @@
                   ', maximum-scale=' + scale + ', minimum-scale=' + scale;
     document.querySelector('[name=viewport]').setAttribute('content', content);
     </script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Ten Frame</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"></link>
     <link rel="stylesheet" type="text/css" href="css/license.css"></link>
     <link rel="stylesheet" type="text/css" href="css/help.css"></link>
@@ -56,11 +55,11 @@ If you want to try another game, or start the current one over, just click the d
            </div>
          </div>
     </div>
-    <div id="licensepage" style="display: none">
+    <div id="licensepage">
         <div id="licensetext"><div id="licensescroll"></div></div>
         <div id="licensebtnq" class="licensebtn">Back</div>
     </div>
-    <div id="pirates_page" class="game_page" style="display: none">
+    <div id="pirates_page" class="game_page">
         <div id="pirates_bg1" class="pirates_bg"></div>
         <div id="pirates_island"></div>
         <div id="pirates_ship_distant"></div>
@@ -75,7 +74,7 @@ If you want to try another game, or start the current one over, just click the d
         <div id="pirates_stranded" class="stranded"></div>
         <div id="pirates_waves"></div>
     </div>
-    <div id="pirates_win_page" class="game_page" style="display: none">
+    <div id="pirates_win_page" class="game_page">
         <div id="pirates_bg2" class="pirates_bg"></div>
         <div id="pirates_msg5" class="winmsg1">Great job!</div>
         <div id="pirates_msg6" class="winmsg2">You rescued <b></b> pirates in 4 boats.</div>
@@ -88,7 +87,7 @@ If you want to try another game, or start the current one over, just click the d
         <div id="pirates_grid3" class="pirates_grid"></div>
         <div id="pirates_grid4" class="pirates_grid"></div>
     </div>
-    <div id="rockets_page" class="game_page" style="display: none">
+    <div id="rockets_page" class="game_page">
         <div class="rockets_bg"></div>
         <div id="rockets_fuellight"></div>
         <div id="rockets_rocket">
@@ -153,7 +152,7 @@ If you want to try another game, or start the current one over, just click the d
             <div id="rockets_msg2">You've launched <b></b> of 5 rockets</div>
         </div>
     </div>
-    <div id="rockets_win_page" class="game_page" style="display: none">
+    <div id="rockets_win_page" class="game_page">
         <div class="rockets_bg"></div>
         <div id="rockets_msg3" class="winmsg1">Great job!</div>
         <div id="rockets_msg4" class="winmsg2">You launched <b>5</b> rockets.</div>
@@ -163,7 +162,7 @@ If you want to try another game, or start the current one over, just click the d
         <div id="rockets_mini4" class="rockets_mini"></div>
         <div id="rockets_mini5" class="rockets_mini"></div>
     </div>
-    <div id="bowling_page" class="game_page" style="display: none">
+    <div id="bowling_page" class="game_page">
         <div id="bowling_bg"></div>
         <div id="bowling_scorecard">
             <div id="bowling_inset">Game <n>1</n> of 5</div>
@@ -201,7 +200,7 @@ If you want to try another game, or start the current one over, just click the d
             <div id="bowling_pin8" class="bowlingpin"></div>
             <div id="bowling_pin9" class="bowlingpin"></div>
             <div id="bowling_pin10" class="bowlingpin"></div>
-            <div id="bowling_ball_rolling" style="opacity: 0"></div>
+            <div id="bowling_ball_rolling"></div>
             <div id="bowling_ball"></div>
         </div>
         <div id="bowling_rollbutton">Roll the ball</div>
@@ -215,7 +214,7 @@ If you want to try another game, or start the current one over, just click the d
             <div id="bowling_quit" class="dialogbtn">Quit</div>
         </div>
     </div>
-    <div id="bowling_win_page" class="game_page" style="display: none">
+    <div id="bowling_win_page" class="game_page">
         <div id="bowling_rawbg"></div>
         <div id="bowling_msg3"><b>Great job!</b><br>You played <b>5</b> games.</div>
         <div id="bowling_mini1" class="bowling_mini"></div>
@@ -224,7 +223,7 @@ If you want to try another game, or start the current one over, just click the d
         <div id="bowling_mini4" class="bowling_mini"></div>
         <div id="bowling_mini5" class="bowling_mini"></div>
     </div>
-    <div id="game_menu_border" style="display: none">
+    <div id="game_menu_border">
         <div id="game_menu">
             <div id="game_menu_new">NEW GAME</div>
             <div id="game_menu_home">MAIN MENU</div>

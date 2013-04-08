@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -24,13 +24,13 @@ function TenFrame() {
     function closeMenu() {
         $("#game_menu").removeClass("slide");
         $("#game_menu_border").css("pointer-events", "none");
-        setTimeout(function () {menushown = false;}, 400);
+        setTimeout(function () {menushown = false;}, 0);
     }
 
     function openMenu() {
         $("#game_menu").addClass("slide");
         $("#game_menu_border").css("pointer-events", "auto");
-        setTimeout(function () {menushown = true;}, 400);
+        setTimeout(function () {menushown = true;}, 0);
     }
 
     /* need to set isrotated so we can swap x/y axis for touch events */
