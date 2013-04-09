@@ -108,11 +108,7 @@ define(['jquery'], function ($) {
             activeGame.close();
             activeGame = null;
 
-            setTimeout(function () {
-                closeMenu();
-                $("#game_menu_border").hide();
-                $("#home_page").show();
-            }, 0);
+            setTimeout(closeMenu, 0);
         });
 
         // set the initial event handler for the menu

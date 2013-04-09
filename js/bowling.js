@@ -64,6 +64,11 @@ function Bowling() {
         reset();
         $("#bowling_page").hide();
         $("#bowling_win_page").hide();
+
+        setTimeout(function () {
+            $("#game_menu_border").hide();
+            $("#home_page").show();
+        }, 0);
     }
     this.close = close;
 

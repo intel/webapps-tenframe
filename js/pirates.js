@@ -291,6 +291,11 @@ function Pirates() {
         sounds.pirate_bgloop.stop();
         $("#pirates_page").hide();
         $("#pirates_win_page").hide();
+
+        setTimeout(function () {
+            $("#game_menu_border").hide();
+            $("#home_page").show();
+        }, 0);
     }
     this.close = close;
 
