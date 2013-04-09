@@ -40,13 +40,13 @@ function Animation(id, startclass, ontime, property) {
     }
 }
 
-Animation.prototype.begin = function() {
+Animation.prototype.begin = function () {
     var self = this;
     self.phase = "starting";
     setTimeout(function(){self.elem.className = self.onclass;}, 0);
 };
 
-Animation.prototype.clear = function() {
+Animation.prototype.clear = function () {
     var self = this;
     if(self.timer)
         clearTimeout(self.timer);
@@ -55,5 +55,3 @@ Animation.prototype.clear = function() {
     if(self.next&&self.next.clear)
         self.next.clear();
 };
-
-
