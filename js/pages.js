@@ -1,4 +1,4 @@
-define(['jquery'], function ($) {
+define(['jqmobi'], function ($) {
   // done: a function called with no arguments when the pages.html
   // file is loaded and in the DOM
   return function (done) {

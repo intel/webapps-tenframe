@@ -343,7 +343,7 @@ function Pirates() {
         timership = setTimeout(function () {sendShip();}, 5000);
 
         /* pirates page handlers */
-        $("#pirates_page .draggable_pirate").mousedown(function(e){
+        $("#pirates_page .draggable_pirate").on('mousedown', function(e){
             if(!data.input)
                 return;
 
@@ -426,7 +426,7 @@ function Pirates() {
         sounds.pirate_bgloop.volume(0.3);
 
         /* pirates page handlers */
-        $("#pirates_page").mousemove(function(e){
+        $("#pirates_page").on('mousemove', function(e){
             if(data.input&&dragging)
             {
                 if(isrotated)
@@ -448,7 +448,7 @@ function Pirates() {
             }
         });
 
-        $("#pirates_page").mouseup(function(e){
+        $("#pirates_page").on('mouseup', function(e){
             if(dragging)
             {
                 var t = new Date().getTime();

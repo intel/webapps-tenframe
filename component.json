@@ -7,11 +7,8 @@
     "components"
   ],
   "dependencies": {
-    "jquery": "~1.9.1",
     "requirejs-domready": "~2.0.1",
-    "almond": "~0.2.5"
-  },
-  "devDependencies": {
-    "requirejs": "~2.1.5"
+    "requirejs": "~2.1.5",
+    "appframework": "https://github.com/01org/appframework.git"
   }
 }

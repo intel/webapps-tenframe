@@ -6,7 +6,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  */
-define(['jquery'], function ($) {
+define(['jqmobi'], function ($) {
     return function () {
         "use strict";
 
