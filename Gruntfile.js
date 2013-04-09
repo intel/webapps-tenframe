@@ -48,11 +48,10 @@ module.exports = function (grunt) {
       }
     },
 
-    // minify almond
     uglify: {
       dist: {
         files: {
-          'build/almond.min.js': [ 'lib/almond/almond.js' ]
+          'build/app/lib/require.min.js': [ 'lib/requirejs/require.js' ]
         }
       },
       perf: {
@@ -69,7 +68,6 @@ module.exports = function (grunt) {
       dist: {
         files: {
           'build/app/js/all.js': [
-            'build/almond.min.js',
             'build/app.min.js'
           ]
         }
@@ -91,7 +89,7 @@ module.exports = function (grunt) {
         files: [
           { expand: true, cwd: '.', src: ['audio/**'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['fonts/**'], dest: 'build/app/' },
-          { expand: true, cwd: '.', src: ['README.txt'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['README.txt'], dest: 'build/app/' }
         ]
       },
       wgt: {
@@ -131,7 +129,12 @@ module.exports = function (grunt) {
     condense: {
       dist: {
         file: 'build/app/index.html',
-        script: 'js/all.js',
+        script: {
+          src: 'lib/require.min.js',
+          attrs: {
+            'data-main': 'js/all'
+          }
+        },
         stylesheet: 'css/all.css'
       }
     },
