@@ -6,6 +6,7 @@ String.prototype.startsWith = function (str) {
 
 require([
   'app',
+  'pages',
   'license',
   'help',
   'animation',
@@ -14,6 +15,10 @@ require([
   'rockets',
   'bowling',
   'domReady!'
-], function (App) {
-  App();
+], function (App, pagesLoader, license_init, help_init) {
+  pagesLoader(function () {
+    App();
+    license_init("license", "home_page");
+    help_init("home_help", "help_");
+  });
 });

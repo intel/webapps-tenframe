@@ -41,9 +41,6 @@ define(['jquery'], function ($) {
                 window.isrotated = true;
         }
 
-        license_init("license", "home_page");
-        help_init("home_help", "help_");
-
         if (window.chrome&&window.chrome.i18n)
         {
             $("#home_pirates_text").html(chrome.i18n.getMessage("pirates_title"));
