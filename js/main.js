@@ -5,20 +5,23 @@ String.prototype.startsWith = function (str) {
 };
 
 require([
-  'app',
   'pages',
-  'license',
-  'help',
-  'animation',
-  'sound',
-  'pirates',
-  'rockets',
-  'bowling',
   'domReady!'
-], function (App, pagesLoader, license_init, help_init) {
+], function (pagesLoader) {
   pagesLoader(function () {
-    App();
-    license_init("license", "home_page");
-    help_init("home_help", "help_");
+    require([
+        'app',
+        'license',
+        'help',
+        'animation',
+        'sound',
+        'pirates',
+        'rockets',
+        'bowling'
+    ], function (App, license_init, help_init) {
+        App();
+        license_init("license", "home_page");
+        help_init("home_help", "help_");
+    });
   });
 });

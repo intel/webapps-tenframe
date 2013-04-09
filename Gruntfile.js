@@ -51,7 +51,15 @@ module.exports = function (grunt) {
     uglify: {
       dist: {
         files: {
-          'build/app/lib/require.min.js': [ 'lib/requirejs/require.js' ]
+          'build/app/lib/require.min.js': [ 'lib/requirejs/require.js' ],
+          'build/app/js/app.js': [ 'js/app.js' ],
+          'build/app/js/license.js': [ 'js/license.js' ],
+          'build/app/js/help.js': [ 'js/help.js' ],
+          'build/app/js/animation.js': [ 'js/animation.js' ],
+          'build/app/js/sound.js': [ 'js/sound.js' ],
+          'build/app/js/pirates.js': [ 'js/pirates.js' ],
+          'build/app/js/rockets.js': [ 'js/rockets.js' ],
+          'build/app/js/bowling.js': [ 'js/bowling.js' ]
         }
       },
       perf: {
