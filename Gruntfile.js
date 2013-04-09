@@ -52,8 +52,13 @@ module.exports = function (grunt) {
     uglify: {
       dist: {
         files: {
-          'build/almond.min.js': [
-            'lib/almond/almond.js'
+          'build/almond.min.js': [ 'lib/almond/almond.js' ]
+        }
+      },
+      perf: {
+        files: {
+          'build/save-perf-data.min.js': [
+            'tools/save-perf-data.js'
           ]
         }
       }
@@ -174,6 +179,19 @@ module.exports = function (grunt) {
         remoteDestDir: '/home/developer/'
       },
 
+      pushdumpscript: {
+        action: 'push',
+        localFiles: 'tools/dump-localStorage.sh',
+        remoteDestDir: '/home/developer/',
+        chmod: '+x',
+        overwrite: true
+      },
+
+      dumplocalstorage: {
+        action: 'script',
+        remoteScript: '/home/developer/dump-localStorage.sh'
+      },
+
       stop: {
         action: 'stop',
         remoteScript: '/home/developer/tizen-app.sh'
@@ -206,6 +224,11 @@ module.exports = function (grunt) {
       }
     },
 
+    inline: {
+      script: 'build/save-perf-data.min.js',
+      htmlFile: 'build/app/index.html'
+    },
+
     simple_server: {
       port: 30303,
       dir: 'build/app/'
@@ -224,11 +247,17 @@ module.exports = function (grunt) {
     'condense'
   ]);
 
-  grunt.registerTask('wgt', ['dist', 'copy:wgt', 'package:wgt']);
   grunt.registerTask('crx', ['dist', 'copy:crx']);
+  grunt.registerTask('wgt', ['dist', 'copy:wgt', 'package:wgt']);
+  grunt.registerTask('perf', [
+    'dist',
+    'uglify:perf',
+    'inline',
+    'copy:wgt',
+    'package:wgt'
+  ]);
 
   grunt.registerTask('install', [
-    'wgt',
     'sdb:prepare',
     'sdb:pushwgt',
     'sdb:install',
@@ -236,7 +265,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('reinstall', [
-    'wgt',
     'sdb:prepare',
     'sdb:pushwgt',
     'sdb:stop',
@@ -245,9 +273,31 @@ module.exports = function (grunt) {
     'sdb:start'
   ]);
 
+  grunt.registerTask('wait', function () {
+    var done = this.async();
+    setTimeout(function () {
+      done();
+    }, 10000);
+  });
+
+  grunt.registerTask('perf-test', function () {
+    var tasks = ['sdb:pushdumpscript', 'perf', 'reinstall', 'sdb:stop'];
+
+    for (var i = 0; i < 11; i++) {
+      tasks.push('sdb:start', 'wait', 'sdb:stop');
+    }
+
+    tasks.push('sdb:dumplocalstorage')
+
+    grunt.task.run(tasks);
+  });
+
   grunt.registerTask('restart', ['sdb:stop', 'sdb:start']);
 
   grunt.registerTask('server', ['dist', 'simple_server']);
+
+  grunt.registerTask('wgt-install', ['wgt', 'install']);
+  grunt.registerTask('wgt-reinstall', ['wgt', 'reinstall']);
 
   grunt.registerTask('default', 'wgt');
 };
