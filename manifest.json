@@ -1,4 +1,5 @@
 {
+   "manifest_version": 2,
    "app": {
       "launch": {
          "local_path": "index.html",
@@ -15,6 +16,6 @@
    "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDwWMRzFhL0Rs0hfWaY8Fg1xd22IydehFmbj7G48NEgZZafotoAhNs9RKG6ji9STc6VUCkELozi66LfZMei6UEAtRUCSDTYYtel2YsP4BaJRh0+jXvhB8yJWZpr3dcn4Q50JAu72QUjgJ7UKVsSUuqSsxbrPVIhPLhyehSrn0iR6QIDAQAB",
    "name": "Ten Frame",
    "version": "1.0.0",
-   "homepage_url" : "https://01.org/webapps/content/tenframe", 
-   "update_url" : "https://01.org/webapps/content/tenframe/update.xml" 
+   "homepage_url" : "https://01.org/webapps/content/tenframe",
+   "update_url" : "https://01.org/webapps/content/tenframe/update.xml"
 }

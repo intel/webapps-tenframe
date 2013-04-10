@@ -110,7 +110,7 @@ module.exports = function (grunt) {
       crx: {
         files: [
           { expand: true, cwd: 'build/app/', src: ['**'], dest: 'build/crx/' },
-          { expand: true, cwd: 'app/_locales', src: ['**'], dest: 'build/crx/_locales' },
+          { expand: true, cwd: '_locales', src: ['**'], dest: 'build/crx/_locales' },
           { expand: true, cwd: '.', src: ['manifest.json'], dest: 'build/crx/' },
           { expand: true, cwd: '.', src: ['icon.png'], dest: 'build/crx/' }
         ]
