@@ -3,7 +3,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
@@ -15,6 +14,8 @@ module.exports = function (grunt) {
 
     clean: ['build'],
 
+    // this uglifies the main module (and its dependency graph)
+    // and copies it to build/app/main.min.js
     requirejs: {
       dist: {
         options: {
@@ -28,7 +29,7 @@ module.exports = function (grunt) {
           name: 'main',
 
           // output
-          out: 'build/app.min.js',
+          out: 'build/main.min.js',
 
           // we don't need to wrap the js in an anonymous function,
           // as our main.js runs the application
@@ -71,17 +72,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // concat minified almond with minified source
-    concat: {
-      dist: {
-        files: {
-          'build/app/js/all.js': [
-            'build/app.min.js'
-          ]
-        }
-      }
-    },
-
     // minify and concat CSS
     cssmin: {
       dist: {
@@ -95,6 +85,7 @@ module.exports = function (grunt) {
     copy: {
       common: {
         files: [
+          { src: 'build/main.min.js', dest: 'build/app/js/main.min.js' },
           { expand: true, cwd: '.', src: ['audio/**'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['fonts/**'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['README.txt'], dest: 'build/app/' }
@@ -140,7 +131,7 @@ module.exports = function (grunt) {
         script: {
           src: 'lib/require.min.js',
           attrs: {
-            'data-main': 'js/all'
+            'data-main': 'js/main.min'
           }
         },
         stylesheet: 'css/all.css'
@@ -248,13 +239,12 @@ module.exports = function (grunt) {
 
   grunt.registerTask('dist', [
     'clean',
-    'copy:common',
     'imagemin:dist',
     'requirejs:dist',
     'uglify:dist',
-    'concat:dist',
     'cssmin:dist',
     'htmlmin:dist',
+    'copy:common',
     'condense'
   ]);
 

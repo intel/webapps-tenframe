@@ -2,7 +2,7 @@ Ten Frame Math
 
 Author: Todd Brandt <todd.e.brandt@intel.com>
 
-This application is written using HTML5/css3/jquery javascript library and is
+This application is written using HTML5/css3/jq.mobi javascript library and is
 distributed under Apache2.0 license.
 
 IMAGES
