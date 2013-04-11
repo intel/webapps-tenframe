@@ -19,13 +19,13 @@ You also need bower to install the client-side dependencies:
 
   npm install -g bower
 
-You should then install the client-side dependencies into app/lib:
+You should then install the client-side dependencies into lib/:
 
   bower install
 
 # WHERE'S THE APP?
 
-Open app/index.html in a browser (providing you have installed the
+Open index.html in a browser (providing you have installed the
 client-side dependencies using bower: see above).
 
 Or you could also serve the app from a standard web server by running
@@ -92,12 +92,12 @@ file, app/js/require-config.js.
 # ADDING YOUR OWN AMD MODULES
 
 When using require in your own code, paths to modules should be
-relative to the ./app/js/ directory. So, for example, imagine you're
-defining a new module app/js/newmodule.js, which depends on
-the module in app/js/mymodule.js. To load the dependency in
-app/js/newmodule.js, you'd do this:
+relative to the ./js/ directory. So, for example, imagine you're
+defining a new module js/newmodule.js, which depends on
+the module in js/mymodule.js. To load the dependency in
+js/newmodule.js, you'd do this:
 
-  // NB 'mymodule' is the path to app/js/mymodule.js, relative to app/js
+  // NB 'mymodule' is the path to mymodule.js, relative to js
   define(['mymodule'], function (MyModule) {
     var newmodule = {
       /*
@@ -116,8 +116,8 @@ Install the dependency (if possible) using bower:
 
   bower install ...package... --save
 
-This will put the package into app/lib and save the dependency into
+This will put the package into lib/ and save the dependency into
 the component.json file.
 
 You will then need to add a path and/or shim for the library into
-app/js/require-config.js so it can be referenced by other modules.
+js/require-config.js so it can be referenced by other modules.
