@@ -1,0 +1,4 @@
+*.wgt
+lib
+node_modules
+build
