@@ -88,7 +88,8 @@ module.exports = function (grunt) {
           { src: 'build/main.min.js', dest: 'build/app/js/main.min.js' },
           { expand: true, cwd: '.', src: ['audio/**'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['fonts/**'], dest: 'build/app/' },
-          { expand: true, cwd: '.', src: ['README.txt'], dest: 'build/app/' }
+          { expand: true, cwd: '.', src: ['README.txt'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['LICENSE'], dest: 'build/app/' }
         ]
       },
       wgt: {
