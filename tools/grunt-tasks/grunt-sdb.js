@@ -318,6 +318,8 @@ module.exports = function (grunt) {
    * config.sdbCmd: the sdb binary path (default='sdb')
    * done: function with signature done(err), where err is set to
    * a non-null value if an error occurs
+   * config.stopOnFailure: if true and uninstall fails, stop grunt
+   * (default: false)
    */
   var uninstall = function (config, done) {
     var configXml = config.config;
