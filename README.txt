@@ -2,7 +2,7 @@ Ten Frame Math
 
 Author: Todd Brandt <todd.e.brandt@intel.com>
 
-This application is written using HTML5/css3/jq.mobi javascript library and is
+This application is written using HTML5/css3/jqMobi javascript library and is
 distributed under Apache2.0 license.
 
 IMAGES
@@ -108,7 +108,7 @@ Tenframe_Pirates_Vo_SaveAPirate.ogg
 LIBRARIES
 -----------------------------------------------------------------------------
 
-Intel App Framework (aka jqMobi) @ git commit 0e07987a
+Intel App Framework (aka jqMobi)
 Copyright 2011, Intel Corporation Ltd.
 MIT / X11 licence
 https://github.com/01org/appframework/blob/master/license.txt
