@@ -7,6 +7,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-tizen');
   grunt.loadTasks('tools/grunt-tasks');
 
   grunt.initConfig({
@@ -195,22 +196,42 @@ module.exports = function (grunt) {
       }
     },
 
-    sdb: {
-      prepare: {
-        action: 'push',
-        localFiles: './tools/grunt-tasks/tizen-app.sh',
-        remoteDestDir: '/home/developer/',
-        chmod: '+x',
-        overwrite: true
-      },
+    tizen_configuration: {
+      tizenAppScriptDir: '/home/developer/',
+      configFile: 'config.xml',
+      sdbCmd: 'sdb'
+    },
 
-      pushwgt: {
+    tizen: {
+      push: {
         action: 'push',
         localFiles: {
           pattern: 'build/*.wgt',
           filter: 'latest'
         },
-        remoteDestDir: '/home/developer/'
+        remoteDir: '/home/developer/'
+      },
+
+      install: {
+        action: 'install',
+        remoteFiles: {
+          pattern: '/home/developer/*.wgt',
+          filter: 'latest'
+        }
+      },
+
+      uninstall: {
+        action: 'uninstall'
+      },
+
+      start: {
+        action: 'start',
+        stopOnFailure: true
+      },
+
+      stop: {
+        action: 'stop',
+        stopOnFailure: false
       },
 
       pushdumpscript: {
@@ -224,37 +245,6 @@ module.exports = function (grunt) {
       dumplocalstorage: {
         action: 'script',
         remoteScript: '/home/developer/dump-localStorage.sh'
-      },
-
-      stop: {
-        action: 'stop',
-        remoteScript: '/home/developer/tizen-app.sh'
-      },
-
-      uninstall: {
-        action: 'uninstall',
-        remoteScript: '/home/developer/tizen-app.sh'
-      },
-
-      install: {
-        action: 'install',
-        remoteFiles: {
-          pattern: '/home/developer/*.wgt',
-          filter: 'latest'
-        },
-        remoteScript: '/home/developer/tizen-app.sh'
-      },
-
-      debug: {
-        action: 'debug',
-        remoteScript: '/home/developer/tizen-app.sh',
-        localPort: '8888',
-        openBrowser: 'google-chrome %URL%'
-      },
-
-      start: {
-        action: 'start',
-        remoteScript: '/home/developer/tizen-app.sh'
       }
     },
 
@@ -300,12 +290,12 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('install', [
-    'sdb:prepare',
-    'sdb:pushwgt',
-    'sdb:stop',
-    'sdb:uninstall',
-    'sdb:install',
-    'sdb:start'
+    'tizen_prepare',
+    'tizen:push',
+    'tizen:stop',
+    'tizen:uninstall',
+    'tizen:install',
+    'tizen:start'
   ]);
 
   grunt.registerTask('wait', function () {
@@ -316,18 +306,18 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('perf-test', function () {
-    var tasks = ['sdb:pushdumpscript', 'perf', 'install', 'sdb:stop'];
+    var tasks = ['tizen:pushdumpscript', 'perf', 'install', 'tizen:stop'];
 
     for (var i = 0; i < 11; i++) {
-      tasks.push('sdb:start', 'wait', 'sdb:stop');
+      tasks.push('tizen:start', 'wait', 'tizen:stop');
     }
 
-    tasks.push('sdb:dumplocalstorage')
+    tasks.push('tizen:dumplocalstorage')
 
     grunt.task.run(tasks);
   });
 
-  grunt.registerTask('restart', ['sdb:stop', 'sdb:start']);
+  grunt.registerTask('restart', ['tizen:stop', 'tizen:start']);
 
   grunt.registerTask('server', ['dist', 'simple_server']);
 
