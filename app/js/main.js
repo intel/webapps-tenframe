@@ -26,11 +26,13 @@ require([
         'sound',
         'pirates',
         'rockets',
-        'bowling'
+        'bowling',
+        'scaleBody'
     ], function (App, license_init, help_init) {
         App();
         license_init("license", "home_page");
         help_init("home_help", "help_");
+        scaleBody(document.getElementsByTagName("body")[0], 720);
     });
   });
 });

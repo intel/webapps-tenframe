@@ -61,7 +61,8 @@ module.exports = function (grunt) {
           'build/app/js/sound.js': [ 'app/js/sound.js' ],
           'build/app/js/pirates.js': [ 'app/js/pirates.js' ],
           'build/app/js/rockets.js': [ 'app/js/rockets.js' ],
-          'build/app/js/bowling.js': [ 'app/js/bowling.js' ]
+          'build/app/js/bowling.js': [ 'app/js/bowling.js' ],
+          'build/app/js/scaleBody.js': [ 'app/js/scaleBody.js' ]
         }
       },
       perf: {
