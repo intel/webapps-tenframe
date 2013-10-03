@@ -20,11 +20,11 @@ module.exports = function (grunt) {
     requirejs: {
       dist: {
         options: {
-          baseUrl: './js',
+          baseUrl: 'app/js',
 
           // include the main requirejs configuration file;
           // see notes in that file on the allowed format
-          mainConfigFile: 'js/require-config.js',
+          mainConfigFile: 'app/js/require-config.js',
 
           // main application module
           name: 'main',
@@ -53,15 +53,15 @@ module.exports = function (grunt) {
     uglify: {
       dist: {
         files: {
-          'build/app/lib/require.min.js': [ 'lib/requirejs/require.js' ],
-          'build/app/js/app.js': [ 'js/app.js' ],
-          'build/app/js/license.js': [ 'js/license.js' ],
-          'build/app/js/help.js': [ 'js/help.js' ],
-          'build/app/js/animation.js': [ 'js/animation.js' ],
-          'build/app/js/sound.js': [ 'js/sound.js' ],
-          'build/app/js/pirates.js': [ 'js/pirates.js' ],
-          'build/app/js/rockets.js': [ 'js/rockets.js' ],
-          'build/app/js/bowling.js': [ 'js/bowling.js' ]
+          'build/app/lib/require.min.js': [ 'app/lib/requirejs/require.js' ],
+          'build/app/js/app.js': [ 'app/js/app.js' ],
+          'build/app/js/license.js': [ 'app/js/license.js' ],
+          'build/app/js/help.js': [ 'app/js/help.js' ],
+          'build/app/js/animation.js': [ 'app/js/animation.js' ],
+          'build/app/js/sound.js': [ 'app/js/sound.js' ],
+          'build/app/js/pirates.js': [ 'app/js/pirates.js' ],
+          'build/app/js/rockets.js': [ 'app/js/rockets.js' ],
+          'build/app/js/bowling.js': [ 'app/js/bowling.js' ]
         }
       },
       perf: {
@@ -77,7 +77,7 @@ module.exports = function (grunt) {
     cssmin: {
       dist: {
         files: {
-          'build/app/css/all.css': ['css/*.css']
+          'build/app/css/all.css': ['app/css/*.css']
         }
       }
     },
@@ -87,47 +87,47 @@ module.exports = function (grunt) {
       common: {
         files: [
           { src: 'build/main.min.js', dest: 'build/app/js/main.min.js' },
-          { expand: true, cwd: '.', src: ['audio/**'], dest: 'build/app/' },
-          { expand: true, cwd: '.', src: ['fonts/**'], dest: 'build/app/' },
-          { expand: true, cwd: '.', src: ['README.txt'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['app/audio/**'], dest: 'build/' },
+          { expand: true, cwd: '.', src: ['app/fonts/**'], dest: 'build/' },
+          { expand: true, cwd: '.', src: ['app/README.txt'], dest: 'build/' },
           { expand: true, cwd: '.', src: ['LICENSE'], dest: 'build/app/' }
         ]
       },
       wgt: {
         files: [
           { expand: true, cwd: 'build/app/', src: ['**'], dest: 'build/wgt/' },
-          { expand: true, cwd: '.', src: ['config.xml'], dest: 'build/wgt/' },
-          { expand: true, cwd: '.', src: ['icon.png'], dest: 'build/wgt/' }
+          { expand: true, cwd: '.', src: ['data/config.xml'], dest: 'build/wgt/' },
+          { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/wgt/' }
         ]
       },
       crx: {
         files: [
           { expand: true, cwd: 'build/app/', src: ['**'], dest: 'build/crx/' },
-          { expand: true, cwd: '_locales', src: ['**'], dest: 'build/crx/_locales' },
+          { expand: true, cwd: 'app/_locales/', src: ['**'], dest: 'build/crx/_locales' },
           { expand: true, cwd: '.', src: ['manifest.json'], dest: 'build/crx/' },
-          { expand: true, cwd: '.', src: ['icon.png'], dest: 'build/crx/' }
+          { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/crx/' }
         ]
       },
       sdk: {
         files: [
           { expand: true, cwd: 'build/app/', src: ['**'], dest: 'build/sdk/' },
           {
-            src: 'lib/requirejs/require.js',
+            src: 'app/lib/requirejs/require.js',
             dest: 'build/sdk/lib/requirejs/require.js'
           },
           {
-            src: 'lib/requirejs-domready/domReady.js',
+            src: 'app/lib/requirejs-domready/domReady.js',
             dest: 'build/sdk/lib/requirejs-domready/domReady.js'
           },
           {
-            src: 'lib/jquery/jquery.js',
+            src: 'app/lib/jquery/jquery.js',
             dest: 'build/sdk/lib/jquery/jquery.js'
           },
-          { expand: true, cwd: 'js', src: ['**'], dest: 'build/sdk/js/' },
-          { expand: true, cwd: 'css', src: ['**'], dest: 'build/sdk/css/' },
-          { expand: true, cwd: '.', src: ['*.html'], dest: 'build/sdk/' },
-          { expand: true, cwd: '.', src: ['config.xml'], dest: 'build/sdk/' },
-          { expand: true, cwd: '.', src: ['icon.png'], dest: 'build/sdk/' }
+          { expand: true, cwd: 'app/js', src: ['**'], dest: 'build/sdk/js/' },
+          { expand: true, cwd: 'app/css', src: ['**'], dest: 'build/sdk/css/' },
+          { expand: true, cwd: 'app/', src: ['*.html'], dest: 'build/sdk/' },
+          { expand: true, cwd: '.', src: ['data/config.xml'], dest: 'build/sdk/' },
+          { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/sdk/' }
         ]
       }
     },
@@ -135,7 +135,7 @@ module.exports = function (grunt) {
     htmlmin: {
       dist: {
         files: [
-          { expand: true, cwd: '.', src: ['*.html'], dest: 'build/app/' }
+          { expand: true, cwd: 'app/', src: ['*.html'], dest: 'build/app/' }
         ],
         options: {
           removeComments: true,
@@ -169,7 +169,7 @@ module.exports = function (grunt) {
           progressive: true
         },
         files: [
-          { expand: true, cwd: '.', src: ['images/**'], dest: 'build/app/' }
+          { expand: true, cwd: '.', src: ['app/images/**'], dest: 'build/' }
         ]
       }
     },
@@ -198,7 +198,7 @@ module.exports = function (grunt) {
 
     tizen_configuration: {
       tizenAppScriptDir: '/home/developer/',
-      configFile: 'config.xml',
+      configFile: 'data/config.xml',
       sdbCmd: 'sdb'
     },
 
