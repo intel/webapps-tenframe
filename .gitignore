@@ -1,4 +1,4 @@
-*.wgt
-lib
-node_modules
+app/lib
 build
+node_modules
+*.wgt
