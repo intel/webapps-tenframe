@@ -124,8 +124,8 @@ module.exports = function (grunt) {
             src: 'app/lib/jquery/jquery.js',
             dest: 'build/sdk/lib/jquery/jquery.js'
           },
-          { expand: true, cwd: 'app/js', src: ['**'], dest: 'build/sdk/js/' },
-          { expand: true, cwd: 'app/css', src: ['**'], dest: 'build/sdk/css/' },
+          { expand: true, cwd: 'app/', src: ['js/**'], dest: 'build/sdk/' },
+          { expand: true, cwd: 'app/', src: ['css/**'], dest: 'build/sdk/' },
           { expand: true, cwd: 'app/', src: ['*.html'], dest: 'build/sdk/' },
           { expand: true, cwd: 'data/', src: ['config.xml'], dest: 'build/sdk/' },
           { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/sdk/' }
