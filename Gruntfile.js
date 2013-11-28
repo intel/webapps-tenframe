@@ -203,10 +203,27 @@ module.exports = function (grunt) {
           { expand: true, cwd: 'app/', src: ['js/**'], dest: 'build/sdk/' },
           { expand: true, cwd: 'app/', src: ['css/**'], dest: 'build/sdk/' },
           { expand: true, cwd: 'app/', src: ['*.html'], dest: 'build/sdk/' },
-          { expand: true, cwd: 'platforms/tizen-wgt/', src: ['config.xml'], dest: 'build/sdk/' },
-          { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/sdk/' }
+          { expand: true, cwd: '.', src: ['icon*.png'], dest: 'build/sdk/' }
         ]
-      }
+      },
+
+      sdk_platform:
+      {
+        files: [
+          { expand: true, cwd: 'platforms/tizen-sdk/', src: ['.project'], dest: 'build/sdk/' },
+          { expand: true, cwd: 'platforms/tizen-wgt/', src: ['config.xml'], dest: 'build/sdk/' }
+        ],
+
+        options:
+        {
+          processContent: function(content, srcpath)
+          {
+            return grunt.template.process(content);
+          }
+        }
+
+      },
+
     },
 
     htmlmin: {
@@ -246,7 +263,8 @@ module.exports = function (grunt) {
           progressive: true
         },
         files: [
-          { expand: true, cwd: '.', src: ['app/images/**'], dest: 'build/' }
+          { expand: true, cwd: '.', src: ['app/images/**'], dest: 'build/' },
+          { expand: true, cwd: '.', src: ['app/css/images/**'], dest: 'build/' }
         ]
       }
     },
@@ -268,7 +286,7 @@ module.exports = function (grunt) {
         files: 'build/sdk/**',
         stripPrefix: 'build/sdk/',
         outDir: 'build',
-        suffix: '.wgt',
+        suffix: '.zip',
         addGitCommitId: false
       }
     },
@@ -349,7 +367,7 @@ module.exports = function (grunt) {
     'imagemin:dist',
     'copy:common',
     'copy:sdk',
-    'copy:wgt_config',
+    'copy:sdk_platform',
     'package:sdk'
   ]);
 
