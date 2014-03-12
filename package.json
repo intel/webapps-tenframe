@@ -1,6 +1,6 @@
 {
   "name": "Tenframe",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Math games for children",
   "main": "js/main.js",
   "scripts": {
